@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 70%;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+        }
+        
+        td, th {
+            padding: 8px;
+        }
+        </style>
+</head>
+<body>
+
+<h1>Country Report</h1>
+
+<form method="GET">
+    <label>Continent:</label>
+    <select name="continent">
+        <option value="">All</option>
+        {% for c in continents %}
+            <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Language:</label>
+    <select name="language">
+        <option value="">All</option>
+        {% for l in languages %}
+            <option value="{{ l }}">{{ l }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Filter</button>
+</form>
+
+<br>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Name</th>
+        <th>Continent</th>
+    </tr>
+
+    {% for c in countries %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.continent }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<a href="/">⬅ Back to list</a>
+
+</body>
+</html>

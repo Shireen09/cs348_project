@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countries</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 70%;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+        }
+        
+        td, th {
+            padding: 8px;
+        }
+        </style>
+</head>
+<body>
+
+<h1>Countries</h1>
+
+<div>
+    <a href="/add/">Add Country</a> |
+    <a href="/report/">View Report</a> |
+    <a href="/submission-details/">Submission Details</a>
+</div>
+
+<br>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Name</th>
+        <th>Continent</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for c in countries %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.continent }}</td>
+        <td>
+            <a href="/edit/{{ c.code }}/">Edit</a> |
+            <a href="/delete/{{ c.code }}/">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

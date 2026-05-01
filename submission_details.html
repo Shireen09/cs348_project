@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submission Details</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+            line-height: 1.5;
+        }
+        code {
+            background: #f3f3f3;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<h1>Project Submission Details</h1>
+
+<h2>a) SQL Injection Protection</h2>
+<ul>
+    <li>The app uses Django ORM queries (<code>filter</code>, <code>get_object_or_404</code>, and model <code>save()</code>), which execute parameterized SQL rather than string-concatenated SQL.</li>
+    <li>Forms include server-side validation and sanitization (for example, <code>clean_code()</code> and <code>clean_name()</code> in <code>CountryForm</code>).</li>
+    <li>CSRF protection is enabled on forms via <code>{% csrf_token %}</code>.</li>
+</ul>
+
+<h2>b) Indexes and Query/Report Support</h2>
+<ul>
+    <li><code>country_cont_name_idx</code> on <code>Country(continent, name)</code> supports:
+        <ul>
+            <li>Report filtering by continent and ordering by country name in <code>/report/</code>.</li>
+            <li>Main country listing ordered by name in <code>/</code>.</li>
+        </ul>
+    </li>
+    <li><code>lang_country_idx</code> on <code>CountryLanguage(language, country)</code> supports:
+        <ul>
+            <li>Report filtering by selected language in <code>/report/</code>.</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>c) Transactions and Isolation Level</h2>
+<ul>
+    <li>Create, edit, and delete operations run inside <code>transaction.atomic()</code> blocks.</li>
+    <li>For multi-user scenarios, edit/delete operations use <code>select_for_update()</code> to lock rows where supported.</li>
+    <li>The app attempts <code>REPEATABLE READ</code> isolation on PostgreSQL/MySQL transactions. SQLite remains fully functional and safely falls back to its default behavior.</li>
+</ul>
+
+<p><a href="/">Back to countries</a></p>
+</body>
+</html>

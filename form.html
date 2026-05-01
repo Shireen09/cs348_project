@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Country Form</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 70%;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+        }
+        
+        td, th {
+            padding: 8px;
+        }
+        </style>
+</head>
+<body>
+
+<h1>Add / Edit Country</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<br>
+<a href="/">⬅ Back to list</a>
+
+</body>
+</html>
